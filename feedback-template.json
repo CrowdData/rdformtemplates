@@ -1,0 +1,55 @@
+{
+          "root": "feedback",
+         "templates": [{
+             "id": "feedback",
+             "type": "group",
+             "content": [
+                 {
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Your Name" },
+                        "property": "http://purl.org/dc/terms/creator",
+                        "cardinality": { "min": 1, "max": 1 },
+                        "constraints": { "http://www.w3.org/TR/rdf-schema/type": "http://xmlns.com/foaf/0.1/Person" },
+                        
+                 },{
+                       "id":"foaf:account",
+                        "property": "http://xmlns.com/foaf/0.1/account",
+                        "label": {
+                        "en": "Your e-mail address"
+                          },
+                        "description": {
+                            "en": "A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox."
+                        },
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "cardinality": { "min": 1, "pref": 1, "max": 1 }
+                        
+             },
+                 {    "id":"dc:title",
+	                  "type": "text",
+                     "nodetype":"ONLY_LITERAL",
+                     "property": "http://purl.org/dc/terms/abstract",
+                     "cardinality": { "min": 1, "pref": 1, "max": 1 },
+                     "label": { "en": "Your Feedback" },
+                     "description": { "en": "Enter Feedback" },
+                     "styles":["multiline"]
+		        },
+		{
+                        "id": "dcterms:date",
+                        "property": "http://purl.org/dc/terms/date",
+                        "label": {
+                            "en": "Date"
+                        },
+                        "description": {
+                            "en": "Date of feedback."
+                        },
+                        "type": "text",
+                        "nodetype": "DATATYPE_LITERAL",
+                        "datatype": "http://www.w3.org/2001/XMLSchema#date",
+                        "cardinality": { "min": 1, "max": 1 }
+                 }
+                
+           ]
+       }]
+}

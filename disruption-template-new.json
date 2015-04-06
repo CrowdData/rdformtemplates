@@ -1,0 +1,341 @@
+{
+         "root": "http://crowddata.abdn.ac.uk/def/incidents/Report",
+         "templates": [{
+             "id": "http://crowddata.abdn.ac.uk/def/incidents/Report",
+             "type": "group",
+			 "label":{"en":"Report"},
+			 "description":{"en":"A report of an Incident"},
+			 "cardinality":{"min":1, "max":1},
+			 "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://rdfs.org/sioc/ns#Post" },
+			 "items":["Agent","http://crowddata.abdn.ac.uk/def/incidents/Incident"],
+			 },{
+						"id":"Agent",
+                        "type": "group",
+                        "nodetype": "BLANK",
+                        "label": { "en": "Provider" },
+						"description": { "en": "Person reporting" },
+                        "property": "http://xmlns.com/foaf/0.1/maker",
+                        "cardinality": { "min": 1, "max": 1 },
+                        "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://xmlns.com/foaf/0.1/Agent" },
+                        "items":["email","name"]
+                 },{
+						"id":"email",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Your Email" },
+						"description": { "en": "The email address associated with the Agent that provided a report" },
+                        "property": "http://crowddata.abdn.ac.uk/def/incidents/email",
+                        "cardinality": { "min": 1, "max": 1 }
+                     
+                 },
+				 {
+						"id":"name",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Your Name" },
+						"description": { "en": "Provide your name" },
+                        "property": "http://xmlns.com/foaf/0.1/name",
+                        "cardinality": { "min": 1, "max": 1 }
+                     
+                 },{
+						"id":"http://crowddata.abdn.ac.uk/def/incidents/Incident",
+                        "type": "group",
+                        "nodetype": "BLANK",
+                        "label": { "en": "Incident" },
+						"description": { "en": "An event or set of circumstances that has an impact on the smart district.  For example, this could be roadworks, a panther sighting, road closure" },
+                        "property": "http://xmlns.com/foaf/0.1/primaryTopic",
+                        "cardinality": { "min": 1, "max": 1 },
+                        "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://crowddata.abdn.ac.uk/def/incidents/Incident" },
+                        "items":["related_incident","incident_type","incident_short","incident_description","incident_status","location","time"]
+                 },{
+						"id":"incident_short",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Short name/description of incident"},
+						"description": { "en": "Short description/name" },
+                        "property": "http://purl.org/dc/terms/title",
+                        "cardinality": { "min": 1, "max": 1 }
+                    
+                 },{
+						"id":"incident_description",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Long description of incident" },
+						"description": { "en": "Long description of incident" },
+                        "property": "http://purl.org/dc/terms/description",
+                        "cardinality": { "min": 1, "max": 1 }
+                    
+                 },{
+						"id":"location",
+                        "type": "group",
+                        "nodetype": "BLANK",
+                        "label": { "en": "Location" },
+						"description": { "en": "Location" },
+                        "property": "http://purl.org/NET/c4dm/event.owl#place",
+                        "cardinality": { "min": 1, "max": 1 },
+                        "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing" },
+                        "items":["location_name","near_busstop"]
+                 }, {
+						"id":"location_name",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Location Name" },
+						"description": { "en": "Where is it?" },
+                        "property": "http://xmlns.com/foaf/0.1/name",
+                        "cardinality": { "min": 1, "max": 1 }
+                    
+                 },{
+						"id":"time",
+                        "type": "group",
+                        "nodetype": "BLANK",
+                        "label": { "en": "Temporal information" },
+						"description": { "en": "Temporal information" },
+                        "property": "http://purl.org/NET/c4dm/event.owl#time",
+                        "cardinality": { "min": 1, "max": 1 },
+                        "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://purl.org/NET/c4dm/timeline.owl#Interval" },
+                        "items":["begins_at","ends_at"]
+                 },{
+						"id": "begins_at",
+                        "property": "http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime",
+                        "label": {
+                            "en": "Date and time disruption starts/started"
+                        },
+                        "description": {
+                            "en": "Date and time disruption starts/started"
+                        },
+                        "type": "text",
+                        "nodetype": "DATATYPE_LITERAL",
+                        "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                        "cardinality": { "min": 1, "max": 1 }
+                 },{
+						"id": "ends_at",
+                        "property": "http://purl.org/NET/c4dm/timeline.owl#endsAtDateTime",
+                        "label": {
+                            "en": "Date and time disruption ends"
+                        },
+                        "description": {
+                            "en": "Date and time disruption ends"
+                        },
+                        "type": "text",
+                        "nodetype": "DATATYPE_LITERAL",
+                        "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                        "cardinality": { "min": 0, "max": 1, "pref": 1 }
+                 },{
+                            "id":"incident_type",
+                            "type": "choice",
+                            "property": "http://crowddata.abdn.ac.uk/def/incidents/incidentType",
+                            "label": { "en": "Incident Type" },
+                            "description": { "en": "The type of an incident." },
+							"cardinality": { "min": 1, "max": 1 },
+							"nodetype": "RESOURCE",
+							"styles": ["dropDown"],
+							"choices": [
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/PowerOutage",
+          "label": "Power Outage"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/InternetOutage",
+          "label": "Internet Outage"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/LeopardSighting",
+          "label": "Leopard Sighting"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/RoadClosed",
+          "label": "Road Closed"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/GateClosed",
+          "label": "Gate Closed"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/TrafficDiversion",
+          "label": "Traffic Diversion"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/ParkingRestriction",
+          "label": "Parking Restriction"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/UnauthorisedCarParking",
+          "label": "Unauthorised Car Parking"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/FraudstersInArea",
+          "label": "Fraudsters in Area"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/BuildingWorks",
+          "label": "Building Works"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/UnattendedBicycles",
+          "label": "Unattended Bicycles"
+     }
+]
+
+					},
+					{
+                            "id":"incident_status",
+                            "type": "choice",
+                            "property": "http://crowddata.abdn.ac.uk/def/incidents/hasStatus",
+                            "label": { "en": "Incident Status" },
+                            "description": { "en": "The current (or latest) known status of the incident." },
+							"cardinality": { "min": 1, "max": 1 },
+							"nodetype": "RESOURCE",
+							"styles": ["dropDown"],
+							"choices":[
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/Unknown",
+          "label": "Unknown"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/Past",
+          "label": "Past"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/Future",
+          "label": "Future"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/incidents/Active",
+          "label": "Active"
+     }
+]
+					},{
+                            "id":"related_incident",
+                            "type": "choice",
+                            "property": "http://crowddata.abdn.ac.uk/def/incidents/relatedIncident",
+                            "label": { "en": "Related incident" },
+                            "description": { "en": "The current (or latest) known status of the incident." },
+							"cardinality": { "min": 0 ,"pref" : 1},
+							"nodetype": "RESOURCE",
+							"styles": ["invisible"],		
+					},{
+                            "id":"near_busstop",
+                            "type": "choice",
+                            "property": "http://crowddata.abdn.ac.uk/def/incidents/nearStopName",
+                            "label": { "en": "Bus stop(s) closest to the incident" },
+                            "description": { "en": "Bus stop closest to incident" },
+                            "choices": [
+    		    {
+          "value": "Guest_House",
+          "label": "Guest_House"
+     },
+     {
+          "value": "Hostel_No-1",
+          "label": "Hostel_No-1"
+     },
+     {
+          "value": "Hostel_No-12",
+          "label": "Hostel_No-12"
+     },
+     {
+          "value": "Hostel_No-5",
+          "label": "Hostel_No-5"
+     },
+     {
+          "value": "Hostel_No-8",
+          "label": "Hostel_No-8"
+     },
+     {
+          "value": "Hill_Side",
+          "label": "Hill_Side"
+     },
+     {
+          "value": "IDC",
+          "label": "IDC"
+     },
+     {
+          "value": "Lake_Side",
+          "label": "Lake_Side"
+     },
+     {
+          "value": "Main_Gate",
+          "label": "Main_Gate"
+     },
+     {
+          "value": "Swimming-Pool",
+          "label": "Swimming-Pool"
+     },
+     {
+          "value": "SOM_&_IRCC",
+          "label": "SOM_&_IRCC"
+     },
+     {
+          "value": "YP",
+          "label": "YP"
+     },
+     {
+          "value": "Hostel_No-7",
+          "label": "Hostel-No-7"
+     },
+     {
+          "value": "Central-Library",
+          "label": "Central-Library"
+     },
+     {
+          "value": "Aeronautical-Engineering",
+          "label": "Aeronautical-Engineering"
+     },
+     {
+          "value": "K.R.E.S.I.T/Gulmohar",
+          "label": "K.R.E.S.I.T/Gulmohar"
+     },
+     {
+          "value": "Tanse-House",
+          "label": "Tansa-House"
+     },
+     {
+          "value": "Lake_Side_Gate_U",
+          "label": "Lake_Side_Gate_U"
+     },
+
+     {
+          "value": "Hostel_15",
+          "label": "Hostel_15"
+     },
+     {
+          "value": "Campus_Hub",
+          "label": "Campus_Hub"
+     },
+     {
+          "value": "Hostel-No-3",
+          "label": "Hostel-No-3"
+     },
+     {
+          "value": "Hostel_10_kvroad",
+          "label": "Hostel_10_kvroad"
+     },
+     {
+          "value": "Hostel_10_maingate",
+          "label": "Hostel_10_maingate"
+     },
+     {
+          "value": "White_House",
+          "label": "White_House"
+     },
+     {
+          "value": "QIP",
+          "label": "QIP_U"
+     },
+     {
+          "value": "New_QIP",
+          "label": "NEW_QIP_U"
+     }
+     
+  	   	],
+  		"cardinality": {
+    			"min": 0,
+    			"pref": 1,
+  		},
+  		"nodetype": "ONLY_LITERAL",
+  		"styles": [
+    			"dropDown"
+  		]
+	    }
+    		    
+			 
+			 ]}

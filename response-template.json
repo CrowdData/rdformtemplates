@@ -1,0 +1,54 @@
+{
+         "root": "response",
+         "templates": [{
+             "id": "response",
+             "type": "group",
+			 "label":{"en":"Reply to question"},
+			 "cardinality":{"min":1, "max":1},
+			 "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://rdfs.org/sioc/ns#Post" },
+			 "items":["creator","reply"],
+			 },{
+						"id":"creator",
+                        "type": "group",
+                        "nodetype": "BLANK",
+                        "label": { "en": "Your details" },
+						"description": { "en": "Provide your details" },
+                        "property": "http://rdfs.org/sioc/ns#has_creator",
+                        "cardinality": { "min": 1, "max": 1 },
+                        "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://rdfs.org/sioc/ns#User" },
+                        "items":["email","name"]
+                 },{
+						"id":"email",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Your Email" },
+						"description": { "en": "Provide your email" },
+                        "property": "http://rdfs.org/sioc/ns#email",
+                        "cardinality": { "min": 1, "max": 1 }
+                     
+                 },
+				 {
+						"id":"name",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Your Name" },
+						"description": { "en": "Provide your name or nickname" },
+                        "property": "http://rdfs.org/sioc/ns#name",
+                        "cardinality": { "min": 1, "max": 1 }
+                     
+                 }, {
+						"id":"reply",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Reply to question" },
+						"description": { "en": "Provide your response" },
+                        "property": "http://rdfs.org/sioc/ns#content",
+                        "cardinality": { "min": 1, "max": 1 }
+                     
+                 }
+				 		 
+			 
+			 
+			 ]
+			 
+			 }
