@@ -15,7 +15,7 @@
                 },
                 "type": "text",
                 "nodetype": "DATATYPE_LITERAL",
-                "datatype": "http://www.w3.org/2001/XMLSchema#date",
+                "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
                 "cardinality": {
                     "min": 1,
                     "pref": 1,
@@ -142,9 +142,9 @@
      
 ],
             }, {
-                "id": "foaf:DemandPersonLocation",
+                "id": "demand_level",
                 "type": "choice",
-                "property": "http://xmlns.com/foaf/0.1/DemandPersonLocation",
+                "property": "http://crowddata.abdn.ac.uk/def/demand/demandLevel",
                 "label": {
                     "en": "Number of passengers at the stop"
                 },
@@ -182,29 +182,7 @@
   		"styles": [
     			"dropDown"
   		]
-	    },
-	    
-	      {		"id":"foaf:name",
-                        "type": "text",
-                        "nodetype": "ONLY_LITERAL",
-                        "label": { "en": "Your Name" },
-                        "property": "http://xmlns.com/foaf/0.1/name",
-                        "cardinality": { "min": 1, "max": 1 },
-                        
-                 },{
-                       "id":"foaf:account",
-                        "property": "http://xmlns.com/foaf/0.1/account",
-                        "label": {
-                        "en": "Your e-mail address"
-                          },
-                        "description": {
-                            "en": "A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox."
-                        },
-                        "type": "text",
-                        "nodetype": "ONLY_LITERAL",
-                        "cardinality": { "min": 1, "pref": 1, "max": 1 }
-                        
-             }
+	    }
 	    
 	    
 	    

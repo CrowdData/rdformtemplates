@@ -1,0 +1,296 @@
+{
+         "root": "http://crowddata.abdn.ac.uk/def/events/IITBEvent",
+         "templates": [{
+             "id": "http://crowddata.abdn.ac.uk/def/events/IITBEvent",
+             "type": "group",
+			 "label":{"en":"Event"},
+			 "description":{"en":"Event"},
+			 "cardinality":{"min":1, "max":1},
+			 "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://purl.org/NET/c4dm/event.owl#Event" },
+			 "items":["event_title","event_type","event_tags","related_event","department","event_description","event_link","location","time"],
+			 },{
+						"id":"location",
+                        "type": "group",
+                        "nodetype": "BLANK",
+                        "label": { "en": "Location" },
+						"description": { "en": "Location" },
+                        "property": "http://purl.org/NET/c4dm/event.owl#place",
+                        "cardinality": { "min": 1, "max": 1 },
+                        "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing" },
+                        "items":["location_name"]
+                 }, {
+						"id":"location_name",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Venue/Location Name" },
+						"description": { "en": "Where is it?" },
+                        "property": "http://xmlns.com/foaf/0.1/name",
+                        "cardinality": { "min": 1, "max": 1 }
+                    
+                 },{
+						"id":"event_title",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Name of the event" },
+						"description": { "en": "Where is it?" },
+                        "property": "http://purl.org/dc/terms/title",
+                        "cardinality": { "min": 1, "max": 1 }
+                    
+                 },{
+						"id":"event_description",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Details of the event" },
+						"description": { "en": "Details of the event" },
+                        "property": "http://purl.org/dc/terms/description",
+						"styles":["multiline"],
+                        "cardinality": { "min": 1, "max": 1 }
+                    
+                 },{
+						"id":"event_tags",
+                        "type": "text",
+                        "nodetype": "ONLY_LITERAL",
+                        "label": { "en": "Provide additional tags/topics/themes of the event (optional)" },
+						"description": { "en": "Provide additional tags/topics/themes of the event (optional)" },
+                        "property": "http://crowddata.abdn.ac.uk/def/events/hasTag",
+                        "cardinality": { "min": 0, "pref":1}
+                    
+                 },{
+						"id":"event_link",
+                        "type": "text",
+                        "nodetype": "DATATYPE_LITERAL",
+						"datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+                        "label": { "en": "More information link" },
+						"description": { "en": "Website link to more information, registrations, updates etc." },
+                        "property": "http://crowddata.abdn.ac.uk/def/events/more_info",
+                        "cardinality": { "min": 0, "pref":1 }
+                    
+                 },{
+						"id":"time",
+                        "type": "group",
+                        "nodetype": "BLANK",
+                        "label": { "en": "Temporal information" },
+						"description": { "en": "Event start/end" },
+                        "property": "http://purl.org/NET/c4dm/event.owl#time",
+                        "cardinality": { "min": 1, "max": 1 },
+                        "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://purl.org/NET/c4dm/timeline.owl#Interval" },
+                        "items":["begins_at","ends_at"]
+                 },{
+						"id": "begins_at",
+                        "property": "http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime",
+                        "label": {
+                            "en": "Event start date time"
+                        },
+                        "description": {
+                            "en": "Event start date time"
+                        },
+                        "type": "text",
+                        "nodetype": "DATATYPE_LITERAL",
+                        "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                        "cardinality": { "min": 1, "max": 1 }
+                 },{
+						"id": "ends_at",
+                        "property": "http://purl.org/NET/c4dm/timeline.owl#endsAtDateTime",
+                        "label": {
+                            "en": "Event end date time"
+                        },
+                        "description": {
+                            "en": "Event end date time"
+                        },
+                        "type": "text",
+                        "nodetype": "DATATYPE_LITERAL",
+                        "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                        "cardinality": { "min": 0, "max": 1, "pref": 1 }
+                 },{
+                            "id":"event_type",
+                            "type": "choice",
+                            "property": "http://crowddata.abdn.ac.uk/def/events/eventType",
+                            "label": { "en": "Event Type(s)" },
+                            "description": { "en": "Select appropriate types related to this event" },
+							"cardinality": { "min": 1},
+							"nodetype": "RESOURCE",
+							"styles": ["dropDown"],
+							"choices": [
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Competition",
+          "label": "Competition"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Drive-Volunteering",
+          "label": "Drive-Volunteering"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Cultural_Event",
+          "label": "Cultural Event"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Tournament",
+          "label": "Tournament"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Theatrical_Performance",
+          "label": "Theatrical Performance"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Festival",
+          "label": "Festival"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Quiz",
+          "label": "Quiz"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Screening_Film",
+          "label": "Screening Film"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Musical_Performance",
+          "label": "Musical Performance"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Departmental_Event",
+          "label": "Departmental Event"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Lecture",
+          "label": "Lecture"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Other_Event",
+          "label": "Other Event"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Workshop",
+          "label": "Workshop"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Talk",
+          "label": "Talk"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Sport",
+          "label": "Sport"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Symposium",
+          "label": "Symposium"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Screening_Sport_Finals",
+          "label": "Screening Sport Finals"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Gaming",
+          "label": "Gaming"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Performing_Arts",
+          "label": "Performing Arts"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Institutional_Event",
+          "label": "Institutional Event"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Dance_Performance",
+          "label": "Dance Performance"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Open_House",
+          "label": "Open House"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Exhibition",
+          "label": "Exhibition"
+     }]
+                    },{
+                            "id":"related_event",
+                            "type": "choice",
+                            "property": "http://purl.org/NET/c4dm/event.owl#sub_event",
+                            "label": { "en": "Related event" },
+                            "description": { "en": "Related event" },
+							"cardinality": { "min": 0 ,"pref" : 1},
+							"nodetype": "RESOURCE",
+							"styles": ["invisible"],		
+		  },
+		{
+                            "id":"department",
+                            "type": "choice",
+                            "property": "http://crowddata.abdn.ac.uk/def/events/department",
+                            "label": { "en": "Related Department (optional)" },
+                            "description": { "en": "Select department this event relates to." },
+							"cardinality": { "min": 0,"pref":1},
+							"nodetype": "RESOURCE",
+							"styles": ["dropDown"],
+							"choices": [{
+          "value": "http://crowddata.abdn.ac.uk/def/events/Chemistry_Dept._Related",
+          "label": "Chemistry Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Computer_Science_and_Engineering_Dept._Related",
+          "label": "Computer Science and Engineering Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Humanities_and_Social_Science_Related",
+          "label": "Humanities and Social Science Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Civil_Engineering_Dept._Related",
+          "label": "Civil Engineering Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Electrical_Engineering_Dept._Related",
+          "label": "Electrical Engineering Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Chemical_Engineering_Dept._Related",
+          "label": "Chemical Engineering Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/SOM_-_Related",
+          "label": "SOM - Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Energy_Science_and_Engineering_Dept._Related",
+          "label": "Energy Science and Engineering Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Mettalurgical_Engineering_and_Material_Science_Dept._Related",
+          "label": "Mettalurgical Engineering and Material Science Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Physics_Dept._Related",
+          "label": "Physics Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Mathematics_Dept._Related",
+          "label": "Mathematics Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Mechanical_Engineering_Dept._Related",
+          "label": "Mechanical Engineering Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Biosciences_and_Bioengineering_Dept._",
+          "label": "Biosciences and Bioengineering Dept. "
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/IT_-_Related",
+          "label": "IT - Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Earth_Science_Dept._Related",
+          "label": "Earth Science Dept. Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Industrial_Design_Center_Related",
+          "label": "Industrial Design Center Related"
+     },
+     {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Aerospace_Engineering_Dept._Related",
+          "label": "Aerospace Engineering Dept. Related"
+     }]
+		}
+    		    
+			 
+			 ]}

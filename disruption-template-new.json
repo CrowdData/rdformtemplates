@@ -7,7 +7,7 @@
 			 "description":{"en":"A report of an Incident"},
 			 "cardinality":{"min":1, "max":1},
 			 "constraints": { "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "http://rdfs.org/sioc/ns#Post" },
-			 "items":["Agent","http://crowddata.abdn.ac.uk/def/incidents/Incident"],
+			 "items":["http://crowddata.abdn.ac.uk/def/incidents/Incident"],
 			 },{
 						"id":"Agent",
                         "type": "group",
