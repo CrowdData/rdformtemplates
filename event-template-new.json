@@ -200,6 +200,14 @@
           "label": "Open House"
      },
      {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Technical_Event",
+          "label": "Technical Event"
+     },
+         {
+          "value": "http://crowddata.abdn.ac.uk/def/events/Non_Technical_Event",
+          "label": "Non Technical Event"
+     },
+     {
           "value": "http://crowddata.abdn.ac.uk/def/events/Exhibition",
           "label": "Exhibition"
      }]

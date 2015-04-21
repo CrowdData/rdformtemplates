@@ -23,7 +23,7 @@
                 }
             }, {
                 "id": "dcterms:location",
-                "property": "http://purl.org/dc/terms/Location",
+                "property": "http://crowddata.abdn.ac.uk/def/demand/hasLocationLabel",
                 "label": {
                     "en": "Location of Stop"
                 },
